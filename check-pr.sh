@@ -4,7 +4,13 @@ HEAD_BRANCHES=$(gh pr list \
     --jq '.[].headRefName')
 
 for HEAD_BRANCH in ${HEAD_BRANCHES}; do
-    echo "head: ${HEAD_BRANCH}"
+    case "${HEAD_BRANCH}" in
+    dev*)
+        echo "NG: ${HEAD_BRANCH}: devをマージ元とするプルリクエストは作成しないでください"
+        ;;
+    *)
+        ;;
+    esac
 done
 
 
